@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessWorkManagementSystem", "BusinessWorkManagementSystem.csproj", "{601DDDCA-157B-4CBC-B0AB-8CFF2639A2E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessWorkManagementSystem.WebAPI", "..\BusinessWorkManagementSystem.WebAPI\BusinessWorkManagementSystem.WebAPI.csproj", "{520659F6-B52C-45B2-A5E1-2B992330D827}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessWorkManagementSystem.ConsoleApp", "..\BusinessWorkManagementSystem.ConsoleApp\BusinessWorkManagementSystem.ConsoleApp.csproj", "{8F0D86A8-902A-4A4C-A027-F2464D33BCFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessWorkManagementSystem.DataAccess", "..\BusinessWorkManagementSystem.DataAccess\BusinessWorkManagementSystem.DataAccess.csproj", "{DD802C56-1DF3-4C09-9882-3338613D9BC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessWorkManagementSystem.TestingHub", "..\BusinessWorkManagementSystem.TestingHub\BusinessWorkManagementSystem.TestingHub.csproj", "{67F3D5BE-8026-4CC1-B441-7D32970AE9A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessWorkManagementSystem.EntityFramework", "..\BusinessWorkManagementSystem.EntityFramework\BusinessWorkManagementSystem.EntityFramework.csproj", "{7D1A0967-14DC-42E7-B311-D47A8F96FCC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{601DDDCA-157B-4CBC-B0AB-8CFF2639A2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601DDDCA-157B-4CBC-B0AB-8CFF2639A2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601DDDCA-157B-4CBC-B0AB-8CFF2639A2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601DDDCA-157B-4CBC-B0AB-8CFF2639A2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520659F6-B52C-45B2-A5E1-2B992330D827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520659F6-B52C-45B2-A5E1-2B992330D827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520659F6-B52C-45B2-A5E1-2B992330D827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520659F6-B52C-45B2-A5E1-2B992330D827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F0D86A8-902A-4A4C-A027-F2464D33BCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0D86A8-902A-4A4C-A027-F2464D33BCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F0D86A8-902A-4A4C-A027-F2464D33BCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F0D86A8-902A-4A4C-A027-F2464D33BCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD802C56-1DF3-4C09-9882-3338613D9BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD802C56-1DF3-4C09-9882-3338613D9BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD802C56-1DF3-4C09-9882-3338613D9BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD802C56-1DF3-4C09-9882-3338613D9BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F3D5BE-8026-4CC1-B441-7D32970AE9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F3D5BE-8026-4CC1-B441-7D32970AE9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F3D5BE-8026-4CC1-B441-7D32970AE9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F3D5BE-8026-4CC1-B441-7D32970AE9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1A0967-14DC-42E7-B311-D47A8F96FCC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1A0967-14DC-42E7-B311-D47A8F96FCC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1A0967-14DC-42E7-B311-D47A8F96FCC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1A0967-14DC-42E7-B311-D47A8F96FCC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {756445A0-0069-4AB1-A3D6-E0B1D15038EF}
+	EndGlobalSection
+EndGlobal

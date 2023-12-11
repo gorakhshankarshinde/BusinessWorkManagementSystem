@@ -1,0 +1,61 @@
+﻿@model BusinessWorkManagementSystem.Models.UserMaster
+@{
+    //var userList = ViewData["UserList"] as List<BusinessWorkManagementSystem.DataAccess.Models.UserModel>;
+
+
+}
+
+<style>
+
+    .abc {
+        background-color: blue;
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Sr. No.</th>
+                        <th scope="col">UserId</th>
+                        <th scope="col">First name Name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile number</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+                        foreach (var item in Model.users)
+                        {
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>@item.UserId</td>
+                                <td>@item.UserFirstName</td>
+                                <td>@item.UserLastName</td>
+                                <td>@item.UserEmailAddress</td>
+                                <td>@item.UserMobileNumber</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary"><i class="far fa-eye">Add</i></button>
+                                    <button type="button" class="btn btn-success"><i class="fas fa-edit">Edit</i></button>
+                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt">Delete</i></button>
+                                </td>
+                            </tr>
+                        
+                        }
+
+                    }
+                   
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
