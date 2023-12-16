@@ -7,9 +7,17 @@ using System.Threading.Tasks;
 
 namespace BusinessWorkManagementSystem.DataAccess
 {
+    /// <summary>
+    /// Here we can create password in encryption format.
+    /// We need to pass long key size. 
+    /// key size exaple: key = "b14ca5898a4e4133bbce2ea2315a1916"
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public class PasswordEncryptionDecryption : IPasswordEncryptionDecryption
     {
-        public string EncryptString(string key, string password)
+        public string EncryptPassword(string key, string password)
         {
             byte[] iv = new byte[16];
             byte[] array;
@@ -38,7 +46,7 @@ namespace BusinessWorkManagementSystem.DataAccess
             return Convert.ToBase64String(array);
         }
 
-        public string DecryptString(string key, string password)
+        public string DecryptPassword(string key, string password)
         {
             byte[] iv = new byte[16];
             byte[] buffer = Convert.FromBase64String(password);

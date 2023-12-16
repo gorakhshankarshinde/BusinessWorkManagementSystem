@@ -13,5 +13,7 @@ namespace BusinessWorkManagementSystem.DataAccess
 
         public List<UserModel> GetUserList();
 
+        public void CreateUser(string? userFirstName, string? userLastName, long mobileNumber, string? userEmail, string userPass, int createdBy = 1, int updatedBy = 1);
+
     }
 }

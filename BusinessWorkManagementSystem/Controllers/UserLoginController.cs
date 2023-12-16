@@ -1,10 +1,22 @@
-﻿using BusinessWorkManagementSystem.Models;
+﻿using BusinessWorkManagementSystem.DataAccess;
+using BusinessWorkManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BusinessWorkManagementSystem.Controllers
 {
     public class UserLoginController : Controller
     {
+
+        IUserData userData;
+        IPasswordEncryptionDecryption passwordEncryptionDecryption;
+
+        public UserLoginController()
+        {
+            userData = new UserData();
+            passwordEncryptionDecryption = new PasswordEncryptionDecryption();
+        }
+
 
         [HttpGet]
         public IActionResult UserLogin()
@@ -64,21 +76,62 @@ namespace BusinessWorkManagementSystem.Controllers
             return "Using form collection: user name " + userName + " password" + pass;
         }
 
+
         /// <summary>
         /// Pass data using javascript ajax call
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult LoginUserUsingJavascriptAjaxCall(string userName, string pass)
+        public string LoginUserUsingJavascriptAjaxCall(string userName, string pass)
         {
-            if(userName == null || pass == null) {
-                return Json(true);
+            try
+            {
+                UserMaster userMaster = new UserMaster();
+                userMaster.users = userData.GetUserList();
+
+                if (userName == null || pass == null) {
+                    return "login failed.";
+                }
+
+                if (IsUserExist(userMaster, userName, pass))
+                {
+                   
+                    return "Login success.";
+                }
+            }
+            catch (Exception)
+            {
+
+                return "login failed.";
             }
 
-            return Json(false);
+
+            return "login failed.";
+
         }
 
+        private bool IsUserExist(UserMaster userMaster, string? userName, string? pass)
+        {
+            bool isUserExist = false;
+            if (userMaster != null)
+            {
+                isUserExist = userMaster.users.Any(
+                    user => user.UserEmailAddress == userName &&
+                    passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
+                    user.Active== true);
 
+                if (isUserExist) 
+                {
+                    ViewData["CurrentUser"] = userMaster.users.Where(user => user.UserEmailAddress == userName &&
+                    passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
+                    user.Active == true).FirstOrDefault();
+
+                    return isUserExist;
+                }
+            }
+
+            return isUserExist;
+        }
     }
 
    

@@ -8,8 +8,8 @@ namespace BusinessWorkManagementSystem.DataAccess
 {
     public interface IPasswordEncryptionDecryption
     {
-        public string EncryptString(string key, string password);
+        public string EncryptPassword(string key, string password);
 
-        public string DecryptString(string key, string password);
+        public string DecryptPassword(string key, string password);
     }
 }

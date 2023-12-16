@@ -89,6 +89,8 @@ namespace BusinessWorkManagementSystem.DataAccess
                         user.UserEmailAddress = dt.Rows[i]["UserEmailAddress"].ToString();
                         user.UserMobileNumber = long.Parse(dt.Rows[i]["UserMobileNumber"].ToString());
                         user.CountryId = int.Parse(dt.Rows[i]["CountryId"].ToString());
+                        user.UserPassword = dt.Rows[i]["UserPassword"].ToString();
+                        user.Active = Convert.ToBoolean( dt.Rows[i]["Active"]);
 
                         userList.Add(user);
                     }
@@ -103,5 +105,37 @@ namespace BusinessWorkManagementSystem.DataAccess
                 throw;
             }
         }
+
+        /// <summary>
+        /// This method is use to create new user in database.
+        /// </summary>
+        /// <param name="userFirstName"></param>
+        /// <param name="userLastName"></param>
+        /// <param name="mobileNumber"></param>
+        /// <param name="userEmail"></param>
+        public void CreateUser(string? userFirstName, string? userLastName, long mobileNumber, string? userEmail, string userPass, int createdBy =1, int updatedBy = 1)
+        {
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionString.DevelopmentConnection);
+                string insertQuery = "insert into Tbl_UserMaster (UserFirstName, UserLastName, UserEmailAddress, UserMobileNumber, CountryId, UserTypeId, UserPassword, CreatedBy, CreatedOn, UpdatedBy, UpdatedOn, Active) values('" +
+                    userFirstName +
+                    "', '" + userLastName +
+                    "', '" + userEmail +
+                    "'," + mobileNumber +
+                    ", 97, 1,'" + userPass + "',"+ createdBy +" , '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', "+ updatedBy +", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 1)";
+
+                SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                sqlConnection.Close();
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
