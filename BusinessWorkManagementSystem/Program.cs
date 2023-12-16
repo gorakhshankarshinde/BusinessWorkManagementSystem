@@ -15,7 +15,7 @@ builder.Services.AddDbContext<BusinessWorkDBContext>(option => option.UseSqlServ
 var binder = new ConfigurationBuilder().
                    SetBasePath(
                    Directory.GetCurrentDirectory()).
-                   AddJsonFile("C:\\Gorakh\\Projects\\BusinessWorkManagementSystem\\BusinessWorkManagementSystem\\appsettings.json");
+                   AddJsonFile("appsettings.json");
 
 IConfiguration configuration = binder.Build();
 

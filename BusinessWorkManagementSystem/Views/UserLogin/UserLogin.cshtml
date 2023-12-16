@@ -1,23 +1,27 @@
-﻿@{
+﻿@using Serilog;
+@{
     ViewData["Title"] = "User Login Page";
-    
 }
 
 @model BusinessWorkManagementSystem.Models.UserLoginViewModel
-
-@Html.Hidden("RedirectToHomePage", Url.Action("Index", "Home"));
-
+@Html.Hidden("RedirectToHomePage", Url.Action("Index", "Home"))
+@Html.Hidden("RedirectToLoginUserUsingJavascriptAjaxCall", Url.Action("LoginUserUsingJavascriptAjaxCall", "UserLogin"))
 @section Scripts {
 
     <script>
         var redirectURL = $("#RedirectToHomePage").val();
+        var redirectLoginUserUsingJavascriptAjaxCall = $("#RedirectToLoginUserUsingJavascriptAjaxCall").val();
         $(document).ready(function () {
             $("#btnSubmit").on('click', function () {
                 debugger;
-                var url = "/UserLogin/LoginUserUsingJavascriptAjaxCall";
+                //Below URL is not working when we deploy code in IIS
+                //var url = "/UserLogin/LoginUserUsingJavascriptAjaxCall";
                 var name = $("#txtUserName").val();
                 var pass = $("#txtPassword").val();
-                $.post(url, { userName: name, pass: pass }, function (data) {
+
+
+
+                $.post(redirectLoginUserUsingJavascriptAjaxCall, { userName: name, pass: pass }, function (data) {
                     debugger;
                     if(data == "Login success.")
                     {
@@ -27,7 +31,6 @@
                         if (greenSpan != null) {
                             greenSpan.style.color = "Green";
                             greenSpan.innerHTML = data;
-                            
                             location.href = redirectURL;
                             openPopup();
                         }
@@ -150,13 +153,10 @@
 }  *@
 
 @* Pass data using Javascript call.*@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
+ <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Modal (background) */
@@ -227,12 +227,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding: 2px 16px;
   background-color: #2fa4e7b5;
   color: white;
-
-
 }
 
-        /* Below CSS is added for button only */
-        .button-10 {
+ /* Below CSS is added for button only */
+ .button-10 {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -247,12 +245,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
-        }
+ }
 
-            .button-10:focus {
+  .button-10:focus {
                 box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
                 outline: 0;
-            }
+ }
 </style>
 </head>
 <body>
@@ -285,9 +283,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
     </div>
     </div>
-   
     <button type="submit" id="btnSubmit" name="btnSub" class="btn btn-primary">Submit</button>
-
 </body>
 </html>
 
