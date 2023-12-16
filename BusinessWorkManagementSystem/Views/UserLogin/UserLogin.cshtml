@@ -5,16 +5,15 @@
 
 @model BusinessWorkManagementSystem.Models.UserLoginViewModel
 
-@Html.Hidden("RedirectTo", Url.Action("Index", "Home"));
+@Html.Hidden("RedirectToHomePage", Url.Action("Index", "Home"));
+
 @section Scripts {
 
     <script>
-        var redirectURL = $("#RedirectTo").val();
+        var redirectURL = $("#RedirectToHomePage").val();
         $(document).ready(function () {
             $("#btnSubmit").on('click', function () {
                 debugger;
-        
-
                 var url = "/UserLogin/LoginUserUsingJavascriptAjaxCall";
                 var name = $("#txtUserName").val();
                 var pass = $("#txtPassword").val();
@@ -32,7 +31,6 @@
                             location.href = redirectURL;
                             openPopup();
                         }
-
                     }
                     else 
                     {
@@ -275,13 +273,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                    <h2 style="color:white">Information</h2>
+                    <h2 style="color:white; font-size:medium">Information</h2>
             </div>
             <div class="modal-body">
                     <span id="spanIsLoginSuccessOrFail" />
             </div>
             <div class="modal-footer">
-                <h3 style="color:white"></h3>
+                <h3 style="color:white">***</h3>
             </div>
         </div>
 
@@ -289,8 +287,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     </div>
    
     <button type="submit" id="btnSubmit" name="btnSub" class="btn btn-primary">Submit</button>
-
-
 
 </body>
 </html>

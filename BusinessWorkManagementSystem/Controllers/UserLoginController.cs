@@ -1,6 +1,7 @@
 ﻿using BusinessWorkManagementSystem.DataAccess;
 using BusinessWorkManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System.Collections.Generic;
 
 namespace BusinessWorkManagementSystem.Controllers
@@ -86,22 +87,24 @@ namespace BusinessWorkManagementSystem.Controllers
         {
             try
             {
+                Log.Information("Method name: LoginUserUsingJavascriptAjaxCall");
                 UserMaster userMaster = new UserMaster();
                 userMaster.users = userData.GetUserList();
 
                 if (userName == null || pass == null) {
-                    return "login failed.";
+                    Log.Information("Message: login failed.");
+                    return "Login failed.";
                 }
 
                 if (IsUserExist(userMaster, userName, pass))
                 {
-                   
+                    Log.Information("Message: login successful.");
                     return "Login success.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Log.Error("Error: "+ ex.Message);
                 return "login failed.";
             }
 

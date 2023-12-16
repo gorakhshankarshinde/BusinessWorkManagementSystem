@@ -1,5 +1,6 @@
 using BusinessWorkManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,30 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BusinessWorkDBContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+
+#region To read app setting
+
+var binder = new ConfigurationBuilder().
+                   SetBasePath(
+                   Directory.GetCurrentDirectory()).
+                   AddJsonFile("C:\\Gorakh\\Projects\\BusinessWorkManagementSystem\\BusinessWorkManagementSystem\\appsettings.json");
+
+IConfiguration configuration = binder.Build();
+
+//Below line is used to read the application settings
+// those are available under "appsettings" section.
+var appSettings = configuration.GetSection("appSettings").Get<AppSettings>();
+
+
+
+#endregion
+if (appSettings != null)
+{ 
+    Log.Logger = new LoggerConfiguration().
+        WriteTo.File(appSettings.SerilogPath, rollingInterval: RollingInterval.Day).
+        CreateLogger();
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,3 +55,17 @@ app.MapControllerRoute(
     pattern: "{controller=UserLogin}/{action=UserLogin}/{id?}");
 
 app.Run();
+
+
+/// <summary>
+/// Below class is added to read "AppSettings" section.
+/// </summary>
+public class AppSettings
+{
+    /// <summary>
+    /// Below property is use to read "EnvironmentName" from the appsettings section.
+    /// </summary>
+    public string EnvironmentName { get; set; }
+
+    public string SerilogPath { get; set; }
+}
