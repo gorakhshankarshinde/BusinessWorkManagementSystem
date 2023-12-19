@@ -1,4 +1,5 @@
-﻿using BusinessWorkManagementSystem.Models;
+﻿using BusinessWorkManagementSystem.DataAccess.Models;
+using BusinessWorkManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,11 +16,25 @@ namespace BusinessWorkManagementSystem.Controllers
 
         public IActionResult Index()
         {
+            var currentUser = HttpContext.Session.GetObjectFromJson<UserModel>("CurrentUser");
+
+            if (currentUser == null)
+            {
+                return RedirectToAction("UserLogin", "UserLogin");
+            }
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            var currentUser = HttpContext.Session.GetObjectFromJson<UserModel>("CurrentUser");
+
+            if (currentUser == null)
+            {
+                return RedirectToAction("UserLogin", "UserLogin");
+            }
+
             return View();
         }
 

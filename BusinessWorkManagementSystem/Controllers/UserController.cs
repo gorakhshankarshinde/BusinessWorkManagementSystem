@@ -16,12 +16,30 @@ namespace BusinessWorkManagementSystem.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            var currentUser = HttpContext.Session.GetObjectFromJson<UserModel>("CurrentUser");
+
+            if (currentUser == null)
+            {
+                return RedirectToAction("UserLogin", "UserLogin");
+            }
+
             return View();
         }
 
         [HttpGet]
         public IActionResult GetAllUsers() 
         {
+            var currentUser = HttpContext.Session.GetObjectFromJson<UserModel>("CurrentUser");
+
+            if(currentUser == null)
+            {
+                return RedirectToAction("UserLogin","UserLogin");
+            }
+
+            int loginUserId = Convert.ToInt32(currentUser.UserId);
+            string loginUserName = Convert.ToString(currentUser.UserFirstName);
+
+
             UserMaster userMaster = new UserMaster();
             userMaster.users = userData.GetUserList();
 

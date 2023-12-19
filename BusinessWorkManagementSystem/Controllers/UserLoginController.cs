@@ -3,6 +3,8 @@ using BusinessWorkManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http; // Added for session
+
 
 namespace BusinessWorkManagementSystem.Controllers
 {
@@ -125,9 +127,15 @@ namespace BusinessWorkManagementSystem.Controllers
 
                 if (isUserExist) 
                 {
-                    ViewData["CurrentUser"] = userMaster.users.Where(user => user.UserEmailAddress == userName &&
+                    var data = userMaster.users.Where(user => user.UserEmailAddress == userName &&
                     passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
                     user.Active == true).FirstOrDefault();
+
+                    DataAccess.Models.UserModel currentUserData = new DataAccess.Models.UserModel();
+                    currentUserData = data;
+
+                    //ViewData["CurrentUser"] = currentUserData;
+                    HttpContext.Session.SetObjectAsJson("CurrentUser", currentUserData);
 
                     return isUserExist;
                 }

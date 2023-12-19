@@ -10,6 +10,8 @@ builder.Services.AddDbContext<BusinessWorkDBContext>(option => option.UseSqlServ
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+
+
 #region To read app setting
 
 var binder = new ConfigurationBuilder().
@@ -26,14 +28,32 @@ var appSettings = configuration.GetSection("appSettings").Get<AppSettings>();
 
 
 #endregion
+
+#region Serilog log object created
 if (appSettings != null)
 { 
     Log.Logger = new LoggerConfiguration().
         WriteTo.File(appSettings.SerilogPath, rollingInterval: RollingInterval.Day).
         CreateLogger();
 }
+#endregion
+
+#region Added settings for session
+//builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromSeconds(10);
+});
+
+//Below IHttpContextAccessor is use to access session variable on view page.
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+#endregion
 
 var app = builder.Build();
+
+//Below line added for session
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
