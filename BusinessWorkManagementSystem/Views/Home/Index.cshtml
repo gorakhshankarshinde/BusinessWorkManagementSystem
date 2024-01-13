@@ -4,30 +4,32 @@
 @model BusinessWorkManagementSystem.Models.UserMaster
 
 
+
 @{
+    
     ViewData["Title"] = "Home Page";
     UserModel currentUser = accessor.HttpContext.Session.GetObjectFromJson<UserModel>("CurrentUser");
-    int i = 0;
+    ViewData["CurrentUser"] = currentUser;
 }
 
 
 
 
 @section Scripts{
-        
+            
   <script>
-
+        
       $(document).ready(function () {
           debugger;
-          //var userName = @currentUser.UserFirstName;
-
+            //var currentUserData = '<%=Session["CurrentUser"]%>';
+            var sesion_values = '<%=currentUser.UserFirstName.ToString()%>';
 
           var greenSpan = document.getElementById("spanLoginUserName");
 
           if (greenSpan != null) 
           {
               greenSpan.style.color = "Green";
-              greenSpan.innerHTML = "Welcome";
+              greenSpan.innerHTML = "Welcome" + currentUserData.UserFirstName;
               openPopup();
            }
       });
@@ -68,6 +70,7 @@
 
 <div class="text-center">
     <h1 id="headingWelcome" class="display-4">Welcome to home page.</h1>
+    <h2>@currentUser.UserFirstName</h2>
 </div>
 
 <!DOCTYPE html>
