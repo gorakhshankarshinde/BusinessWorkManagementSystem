@@ -120,6 +120,18 @@ namespace BusinessWorkManagementSystem.Controllers
             bool isUserExist = false;
             if (userMaster != null)
             {
+
+                if (userName != null && pass != null) 
+                {
+                    if (userMaster.users[0].UserEmailAddress == userName &&
+                        userMaster.users[0].UserPassword == pass)
+                        return true;
+                    else
+                        return isUserExist;
+                }
+
+                
+                /*
                 isUserExist = userMaster.users.Any(
                     user => user.UserEmailAddress == userName &&
                     passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
@@ -139,6 +151,7 @@ namespace BusinessWorkManagementSystem.Controllers
 
                     return isUserExist;
                 }
+                */
             }
 
             return isUserExist;
