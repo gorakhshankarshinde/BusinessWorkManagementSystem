@@ -125,22 +125,15 @@ namespace BusinessWorkManagementSystem.Controllers
                 {
                     if (userMaster.users[0].UserEmailAddress == userName &&
                         userMaster.users[0].UserPassword == pass)
-                        return true;
+                        isUserExist = true;
                     else
                         return isUserExist;
                 }
 
-                
-                /*
-                isUserExist = userMaster.users.Any(
-                    user => user.UserEmailAddress == userName &&
-                    passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
-                    user.Active== true);
-
-                if (isUserExist) 
+                if (isUserExist)
                 {
                     var data = userMaster.users.Where(user => user.UserEmailAddress == userName &&
-                    passwordEncryptionDecryption.DecryptPassword("GorakhShankarShinde1991PuneIndia", user.UserPassword) == pass &&
+                    user.UserPassword == pass &&
                     user.Active == true).FirstOrDefault();
 
                     DataAccess.Models.UserModel currentUserData = new DataAccess.Models.UserModel();
@@ -151,7 +144,7 @@ namespace BusinessWorkManagementSystem.Controllers
 
                     return isUserExist;
                 }
-                */
+
             }
 
             return isUserExist;

@@ -42,8 +42,10 @@ if (appSettings != null)
 //builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(option =>
 {
-    option.IdleTimeout = TimeSpan.FromSeconds(10);
+    option.IdleTimeout = TimeSpan.FromMinutes(10);
 });
+
+builder.Services.AddMemoryCache(); // This method add in memory implementation at server side to store session information.
 
 //Below IHttpContextAccessor is use to access session variable on view page.
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
